@@ -231,4 +231,40 @@ window.onload = function() {
 
     // Update rover's position every 1 second (sample interval)
     setInterval(updateRoverPosition, 1000);
+    
 };
+function getRandomValue(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+// Function to update data table with random values
+function updateDataTable(tableId, min, max) {
+    // Generate random value
+    const value = getRandomValue(min, max);
+
+    // Update table with the random value
+    const table = document.getElementById(tableId).getElementsByTagName('tbody')[0];
+    const row = table.insertRow(0);
+    const cell = row.insertCell(0);
+    cell.textContent = value;
+
+    // Remove older rows if the table exceeds the limit
+    const maxRows = 10; // Maximum number of rows to display
+    if (table.rows.length > maxRows) {
+        table.deleteRow(-1); // Delete the last row
+    }
+}
+
+// Update all data tables initially
+updateDataTable("speedDataTable", 1, 20); // Speed (m/s) range: 1-20
+updateDataTable("temperatureDataTable", 10, 50); // Temperature (°C) range: 10-50
+updateDataTable("humidityDataTable", 30, 70); // Humidity (%) range: 30-70
+updateDataTable("altitudeDataTable", 100, 500); // Altitude (m) range: 100-500
+
+// Update all data tables every second
+setInterval(function() {
+    updateDataTable("speedDataTable", 1, 20); // Speed (m/s) range: 1-20
+    updateDataTable("temperatureDataTable", 10, 50); // Temperature (°C) range: 10-50
+    updateDataTable("humidityDataTable", 30, 70); // Humidity (%) range: 30-70
+    updateDataTable("altitudeDataTable", 100, 500); // Altitude (m) range: 100-500
+}, 1000);
