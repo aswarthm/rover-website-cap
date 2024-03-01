@@ -200,6 +200,7 @@ window.onload = function() {
     function updateMapView() {
         // Clear previous drawings
         mapCtx.clearRect(0, 0, mapCanvas.width, mapCanvas.height);
+        mapCtx.strokeStyle = "#ffffff"; // White color
 
         // Draw grid lines
         for (let row = 0; row < numRows; row++) {
