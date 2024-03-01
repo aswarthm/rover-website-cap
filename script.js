@@ -1,4 +1,12 @@
 // Define data objects for all properties
+// KEEP ALL ARRAYS OF SAME LENGTH
+const speedArray = [23, 24, 22, 24, 23,25,24,25,25,25];
+const batteryArray = [23, 24, 22, 24, 23,25,24,25,25,25];
+const temperatureArray = [23, 24, 22, 24, 23,25,24,25,25,25];
+const altitudeArray=[23, 24, 22, 24, 23,25,24,25,25,25];
+const humidityArray=[23, 24, 22, 24, 23,25,24,25,25,25];
+const slen=10; //lenght of array
+let i=0;
 const speedData = {
     labels: [],
     datasets: [{
@@ -118,12 +126,19 @@ window.onload = function() {
 
     // Function to update all charts and data
     function updateCharts() {
-        // Generate random data for each property
-        const speed = Math.floor(Math.random() * 20) + 1;
-        const batteryLevel = Math.floor(Math.random() * 100) + 1;
-        const temperature = Math.floor(Math.random() * 50) + 10;
-        const altitude = Math.floor(Math.random() * 100) + 1;
-        const humidity = Math.floor(Math.random() * 100) + 1;
+        
+        if(i>slen)
+        {
+            i=0;
+        }
+        i++;
+        const speed = speedArray[i];
+        
+
+        const batteryLevel = batteryArray[i];
+        const temperature = temperatureArray[i];
+        const altitude = altitudeArray[i];
+        const humidity = humidityArray[i];
 
         // Add data to respective datasets
         speedData.labels.push('');
@@ -239,9 +254,9 @@ function getRandomValue(min, max) {
 }
 
 // Function to update data table with random values
-function updateDataTable(tableId, min, max) {
+function updateDataTable(tableId, val) {
     // Generate random value
-    const value = getRandomValue(min, max);
+    const value = val
 
     // Update table with the random value
     const table = document.getElementById(tableId).getElementsByTagName('tbody')[0];
@@ -257,15 +272,17 @@ function updateDataTable(tableId, min, max) {
 }
 
 // Update all data tables initially
-updateDataTable("speedDataTable", 1, 20); // Speed (m/s) range: 1-20
-updateDataTable("temperatureDataTable", 10, 50); // Temperature (°C) range: 10-50
-updateDataTable("humidityDataTable", 30, 70); // Humidity (%) range: 30-70
-updateDataTable("altitudeDataTable", 100, 500); // Altitude (m) range: 100-500
+updateDataTable("speedDataTable", speedArray[i]); // Speed (m/s) range: 1-20
+updateDataTable("temperatureDataTable", temperatureArray[i]); // Temperature (°C) range: 10-50
+updateDataTable("humidityDataTable", humidityArray[i]); // Humidity (%) range: 30-70
+updateDataTable("altitudeDataTable", altitudeArray[i]); // Altitude (m) range: 100-500
 
 // Update all data tables every second
 setInterval(function() {
-    updateDataTable("speedDataTable", 1, 20); // Speed (m/s) range: 1-20
-    updateDataTable("temperatureDataTable", 10, 50); // Temperature (°C) range: 10-50
-    updateDataTable("humidityDataTable", 30, 70); // Humidity (%) range: 30-70
-    updateDataTable("altitudeDataTable", 100, 500); // Altitude (m) range: 100-500
+   // Update all data tables initially
+updateDataTable("speedDataTable", speedArray[i]); // Speed (m/s) range: 1-20
+updateDataTable("temperatureDataTable", temperatureArray[i]); // Temperature (°C) range: 10-50
+updateDataTable("humidityDataTable", humidityArray[i]); // Humidity (%) range: 30-70
+updateDataTable("altitudeDataTable", altitudeArray[i]); // Altitude (m) range: 100-500
+
 }, 1000);
