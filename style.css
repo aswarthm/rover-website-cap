@@ -24,7 +24,7 @@ h2 {
 /* Add this CSS to your existing styles.css file */
 
 .container {
-    max-width: 544px;
+    
     margin: 0 auto;
     padding: 20px;
     
@@ -47,4 +47,8 @@ h2 {
     margin-bottom: 10px;
     width: 200 !important;
     height: 200 !important ;
+}
+canvas{
+    border: 5px;
+    border-color: white;
 }
