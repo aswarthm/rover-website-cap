@@ -1,11 +1,15 @@
 // Define data objects for all properties
 // KEEP ALL ARRAYS OF SAME LENGTH
-const speedArray = [23, 24, 22, 24, 23,25,24,25,25,25];
-const batteryArray = [23, 24, 22, 24, 23,25,24,25,25,25];
-const temperatureArray = [23, 24, 22, 24, 23,25,24,25,25,25];
-const altitudeArray=[23, 24, 22, 24, 23,25,24,25,25,25];
-const humidityArray=[23, 24, 22, 24, 23,25,24,25,25,25];
-const slen=10; //lenght of array
+const slen=40; //lenght of array
+function addNoise(array, noiseLevel, divideBy = 1) {
+    return array.map(value => (value + (Math.random() - 0.5) * noiseLevel) / divideBy);
+}
+
+const speedArray = addNoise([0, 0.005, 0.01, 0.015, 0.02, 0.025, 0.03, 0.035, 0.04, 0.045, 0.05, 0.055, 0.06, 0.065, 0.07, 0.075, 0.08, 0.085, 0.09, 0.095], 0.005);
+const batteryArray = addNoise([100, 99, 98, 97, 96, 95, 94, 93, 92, 91, 90, 89, 88, 87, 86, 85, 84, 83, 82, 80], 1);
+const temperatureArray = addNoise([20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1], 2);
+const altitudeArray = addNoise([0, 200, 400, 600, 800, 1000, 1200, 1400, 1600, 1800, 2000, 2200, 2400, 2600, 2800, 3000, 3200, 3400, 3600, 4000], 400, 100);
+const humidityArray = addNoise([50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50], 0.1,);
 let i=0;
 const speedData = {
     labels: [],
@@ -157,7 +161,7 @@ window.onload = function() {
         humidityData.datasets[0].data.push(humidity);
 
         // Remove old data points if exceeding the limit
-        const maxDataPoints = 10;
+        const maxDataPoints = slen;
         if (speedData.labels.length > maxDataPoints) {
             speedData.labels.shift();
             speedData.datasets[0].data.shift();
@@ -234,16 +238,16 @@ window.onload = function() {
     }
 
     // Update map view initially
-    updateMapView();
+    // updateMapView();
 
-    // Function to update the rover's position (sample logic)
-    function updateRoverPosition() {
-        // Update rover's position (sample logic)
-        roverPosition.row = Math.floor(Math.random() * numRows);
-        roverPosition.col = Math.floor(Math.random() * numCols);
-        // Update map view
-        updateMapView();
-    }
+    // // Function to update the rover's position (sample logic)
+    // function updateRoverPosition() {
+    //     // Update rover's position (sample logic)
+    //     roverPosition.row = Math.floor(Math.random() * numRows);
+    //     roverPosition.col = Math.floor(Math.random() * numCols);
+    //     // Update map view
+    //     updateMapView();
+    // }
 
     // Update rover's position every 1 second (sample interval)
     setInterval(updateRoverPosition, 1000);
