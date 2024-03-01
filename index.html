@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rover Dashboard</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+<div class="container">
+    <div class="camera-feed">
+        <h2>Camera Feeds</h2>
+        <!-- Display camera feeds here -->
+    </div>
+    <div class="details">
+        <h2>Rover Details</h2>
+        <div class="container">
+            <div class="chart-container">
+                <h2>Speed Chart</h2>
+                <canvas id="speedChart" width="400" height="200"></canvas>
+            </div>
+            <div class="chart-container">
+                <h2>Battery Chart</h2>
+                <canvas id="batteryChart" width="400" height="200"></canvas>
+            </div>
+            <br><br>
+            <div class="chart-container">
+                <h2>Temperature Chart</h2>
+                <canvas id="temperatureChart" width="400" height="200"></canvas>
+            </div>
+        </div>
+       
+        
+        <div class="chart-container">
+            <h2>Altitude Chart</h2>
+            <canvas id="altitudeChart" width="400" height="200"></canvas>
+        </div>
+        
+        <!-- Humidity Chart -->
+        <div class="chart-container">
+            <h2>Humidity Chart</h2>
+            <canvas id="humidityChart" width="400" height="200"></canvas>
+        </div>
+            <div id="life">Life Science Inference: </div>
+            <div id="map-view">Map View: </div>
+            <div id="goal-points">Goal Points: </div>
+           
+        
+    </div>
+    <div class="controls">
+        <h2>Rover Controls</h2>
+        <div id="rover-control">Rover Joystick</div>
+        <div id="arm-control">Arm Joystick</div>
+    </div>
+    <div class="signal-strength">
+        <h2>Communication Signal Strength</h2>
+        <div id="wifi-strength">WiFi Strength: <canvas id="wifiChart" width="200" height="100"></canvas></div>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
